@@ -1,37 +1,37 @@
 <template>
   <div class="hello">
      Welcome
-     <p ref="p">My name is {{name}} and my age is {{age}}</p>
-     <button @click="handleClick">click me</button>
+     <h2>Refs</h2>
+     <p>{{vicOne.name}} - {{vicOne.age}}</p>
+     <button @click="upDateVicOne">update vic one</button>
+     <h2>Reactive</h2>
+     <p>{{vicTwo.name}} - {{vicTwo.age}}</p>
+     <button @click="upDateVicTwo">update vic two</button>
   </div>
 </template>
 
 <script>
 
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
-  },
+   
 
   setup(){
-    console.log("setup")
+     const vicOne = ref({ name:'Omoefe', age:30})
+     const vicTwo = reactive({name:'Joseph',age:32})
 
-    const p = ref(null)
-
-    let name = 'Omoefe'
-    let age = 29
-
-    const handleClick = () =>{
-      console.log(p, p.value)
-      p.value.classList.add('lagos')
-      p.value.textContent = 'Hello, World'
+    const upDateVicOne = () =>{
+      vicOne.value.age = 28
     }
 
-    return {name, age, handleClick, p}
-  }
+    const upDateVicTwo = () =>{
+      vicTwo.age = 28
+    }
+
+    return {vicOne,vicTwo,upDateVicOne,upDateVicTwo}
+  },
 }
 </script>
 
